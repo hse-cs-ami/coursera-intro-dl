@@ -18,7 +18,7 @@ def download_github_release(path):
 class WeekSetup(ABC):
 
     def __init__(self):
-        download_github_code('utils/grading.py')  # TODO: make actual grading file
+        download_github_code('utils/testing.py')  # TODO: make actual grading file
 
     @abstractmethod
     def setup(self):
