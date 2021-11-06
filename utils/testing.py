@@ -66,29 +66,57 @@ class TestWeek01(Tester):
 
 class TestWeek02(Tester):
 
+    def submit_wrapper(self, wrapper, part_idx):
+        answer = [
+            wrapper.history['test_accuracy'][-1].item(),
+            wrapper.history['train_accuracy'][-1].item(),
+            wrapper.history['test_loss'][-1].item(),
+            wrapper.history['train_loss'][-1].item(),
+        ]
+        self.grader.set_answer(self.parts[part_idx], answer)
+        self.grader.submit(self.email, self.token)
+
     def test01(self, wrapper):
-        pass
+        self.submit_wrapper(wrapper, 0)
 
     def test02(self, wrapper):
-        pass
+        self.submit_wrapper(wrapper, 1)
 
     def test03(self, wrapper):
-        pass
+        self.submit_wrapper(wrapper, 2)
 
     def test04(self, wrapper):
-        pass
+        self.submit_wrapper(wrapper, 3)
 
 
 class TestWeek03(Tester):
 
     def test01(self, dataset_class):
-        pass
+        dataset = dataset_class()
+        answer = [
+            dataset[0][0].size,
+            dataset[0][1].item()
+        ]
+        self.grader.set_answer(self.parts[0], answer)
+        self.grader.submit(self.email, self.token)
 
     def test02(self, model):
-        pass
+        answer = [
+            model.model.fc.in_features,
+            model.model.fc.out_features
+        ]
+        self.grader.set_answer(self.parts[1], answer)
+        self.grader.submit(self.email, self.token)
 
     def test03(self, wrapper):
-        pass
+        answer = [
+            wrapper.history['test_accuracy'][-1].item(),
+            wrapper.history['train_accuracy'][-1].item(),
+            wrapper.history['test_loss'][-1].item(),
+            wrapper.history['train_loss'][-1].item(),
+        ]
+        self.grader.set_answer(self.parts[2], answer)
+        self.grader.submit(self.email, self.token)
 
 
 class TestWeek04(Tester):
